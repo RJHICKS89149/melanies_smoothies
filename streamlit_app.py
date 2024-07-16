@@ -10,6 +10,9 @@ st.write("""
 Choose the fruits you want in your custom Smoothie!
 """)
 
+name_on_order = st.text_input("Name on Smoothie:")
+st.write("The name on your Smoothie will be:", name_on_order)
+
 cnx = st.connection("snowflake")
 session = cnx.session()
 
@@ -46,8 +49,12 @@ if ingredients_list:
 
     #st.write(ingredients_string)
     
-    my_insert_stmt = """ insert into smoothies.public.orders(ingredients)
-            values ('""" + ingredients_string + """')"""
+        
+    my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
+            values ('""" + ingredients_string +"""','""" + name_on_order +"""')"""
+
+ #   my_insert_stmt = """ insert into smoothies.public.orders(ingredients)
+ #           values ('""" + ingredients_string + """')"""
 
     #st.write(my_insert_stmt)
     #st.write(ingredients_string)
